@@ -55,6 +55,25 @@ impl Universe {
 		}
 		count
 	}
+
+	pub fn new() -> Universe{
+		let width = 64;
+		let height = 64;
+		let cells = (0..width*height)
+			.map(|i|{
+				if i%2 == 0 || i%7 == 0{
+					Cell::Alive
+				}else {
+					Cell::Dead
+				}
+			}).collect();
+
+		Universe {
+			width,
+			height,
+			cells,
+		}
+	}
 }
 
 use std::fmt;
@@ -74,7 +93,7 @@ impl fmt::Display for Universe {
 }
 
 fn main() {
-	let mut u1 = Universe {
+	let mut _alpha_object = Universe {
 		height: 4,
 		width: 4,
 		cells: vec![
@@ -84,11 +103,19 @@ fn main() {
 			Cell::Dead,		Cell::Dead,			Cell::Dead,		Cell::Dead,
 		],
 	};
+
+	let mut _created_object = Universe::new();
+
 	loop {
-		println!("{}",&u1);
-		u1.tick();
+		// println!("{}",&_alpha_object);
+		// _alpha_object.tick();
+
+		println!("{}",&_created_object);
+		_created_object.tick();
 	}
-	println!("\n \n")
+	println!("\n \n");
+	
+
 	// println!("{}", &u1.live_neighbor_count(1,1));
 	// println!("{}", &u1.live_neighbor_count(1,1));
 
